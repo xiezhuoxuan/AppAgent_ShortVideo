@@ -1,0 +1,1 @@
+{"tap": "", "text": "", "v_swipe": "Swiping up on the UI element allows the user to proceed to the next video in the feed, indicating either they did not like the current video or want to continue browsing. This action is mandatory to advance to the next video regardless of their preference for the current content.", "h_swipe": "", "long_press": ""}

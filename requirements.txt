@@ -1,0 +1,10 @@
+argparse
+colorama
+dashscope
+opencv-python
+pyshine
+pyyaml
+requests
+uiautomator2
+watchdog
+pynput
