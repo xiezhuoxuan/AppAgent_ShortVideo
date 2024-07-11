@@ -18,7 +18,7 @@
 4. (可选）如果您没有安卓设备, 我们建议您下载 [Android Studio](https://developer.android.com/studio/run/emulator) 并使用其自带的模拟器。模拟器可以在 Android Studio 的设备管理器中找到。您可以从互联网上下载 APK 文件并将其拖到模拟器上，从而在模拟器上安装应用程序。本项目可以检测模拟设备并在其上操作应用程序，就像操作真实设备一样。
 5. 克隆此 repo 并安装依赖项。本项目中的所有脚本都是用 Python 3 编写的，因此请确保已安装。
 ```bash
-cd AppAgent_shortvideo
+cd AppAgent_ShortVideo
 pip install -r requirements.txt
 ```
 ### 2. Agent配置
