@@ -100,7 +100,7 @@ event_handler = EventRecord_Handler(f_name)
 event_handler.s_time = s_time
 observer.schedule(event_handler, path=".", recursive=False)
 observer.start()
-# 查询getevent是否被杀死的结果写入文件
+# 查询getevent是否被杀死的 '结果写入文件'
 kill_getevent = "kill_getevent.txt"
 
 on_press_partial = partial(keyboard_on_press, event_handler=event_handler)
@@ -207,6 +207,7 @@ while True:
 observer.stop()
 print_with_color(f"演示完成，总共记录了 {step-1} 步。", "green")
 
+# 清楚临时文件
 file_list = [ewh_size, kill_getevent, f_name]
 for filename in file_list:
     os.remove(filename)

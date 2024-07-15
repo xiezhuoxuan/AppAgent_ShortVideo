@@ -136,6 +136,7 @@ with open(user_desc_fn, 'r') as f:
 # user_desc = input()
 
 tmp_list = []
+# 读取持久化的点赞和滑动坐标
 with open("tap_swipe_coordinate.txt", 'r') as f:
     for l in f.readlines():
         if len(l) > 0:
@@ -249,7 +250,7 @@ while round_count < configs["MAX_ROUNDS"] or not new_video:
         # print("xxxxxxxxx\n")
         # print(user_like)
         if user_like:
-            # print("老街口！\n")
+            # print("老接口！\n")
             url = 'http://10.61.1.25:8989/islike2'
             headers = {'Content-Type': 'application/json'}
             data = {'like_historys': user_like, 'dislike_historys': user_dislike,  'target_item': viewing+" the title is "+title}
@@ -258,7 +259,7 @@ while round_count < configs["MAX_ROUNDS"] or not new_video:
             like = response.json()['isLiker']['like']
             reason = response.json()['isLiker']['reason']
         else:
-            # print("新街口！\n")
+            # print("新接口·！\n")
             url = 'http://10.61.1.25:8989/islike_woHistory2'
             headers ={'content-Type':'application/json'}
             data ={'user_profile':user_desc, 'target_item': viewing} # +" the title is "+title}

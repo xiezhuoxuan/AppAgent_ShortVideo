@@ -24,6 +24,7 @@ else:
     device = input()
 controller = AndroidController(device)
 
+# 主要是运行一次以下函数，这样可以在虚拟机上启动所需环境
 screenshot_path = controller.get_screenshot(f"initial", "./")
 xml_path, s_encoding = controller.get_xml(f"initial", "./")
 

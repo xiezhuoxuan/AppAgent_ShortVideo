@@ -117,6 +117,7 @@ with open(record_path, "r") as infile:
             }
 
         print_with_color(f"Waiting for QWen to generate documentation for the element {resource_id}", "yellow")
+        # 调用大模型生成说明书
         status, rsp = mllm.get_model_response(prompt, [img_before, img_after])
         if status:
             doc_content[action_type] = rsp

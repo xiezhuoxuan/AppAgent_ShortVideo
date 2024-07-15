@@ -116,6 +116,7 @@ for i, elem in enumerate(elem_list):
     doc_path = os.path.join(docs_dir, f"{elem.uid}.txt")
     if not os.path.exists(doc_path):
         continue
+    # 读取之前生成的说明书
     ui_doc += f"Documentation of UI element labeled with the numeric tag '{i + 1}':\n"
     doc_content = ast.literal_eval(open(doc_path, "r").read())
     if doc_content["tap"]:

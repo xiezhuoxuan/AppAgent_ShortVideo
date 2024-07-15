@@ -225,6 +225,7 @@ def parse_grid_rsp(rsp, new_video):
         return ["ERROR"]
 
 # 解析大模型返回值    new_video代表这个视频操作过没，新旧视频有不同处理逻辑
+# 新视频判断是否喜欢然后标记为老视频，老视频直接划走
 def my_parse_explore_rsp(rsp, new_video):
     try:
         observation = re.findall(r"Viewing: (.*?)$", rsp, re.MULTILINE)[0]

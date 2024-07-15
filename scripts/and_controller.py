@@ -38,6 +38,7 @@ def execute_adb_nowait(adb_command, t=0):
         time.sleep(t)
     return result
 
+# 获得像素坐标和event体系坐标的转换倍率
 def get_eventwh_rate(w, h, ewh_size='event_weight_height.txt'):
     # 获取event体系高宽
     adb_command = f'adb shell getevent -p | grep -e "0035" -e "0036" >{ewh_size}'
@@ -58,6 +59,7 @@ def get_eventwh_rate(w, h, ewh_size='event_weight_height.txt'):
     rh = h / eh
     return rw, rh
 
+# 判断给定坐标是哪个元素的
 def get_label_id(x, y, elem_list):
     for count, e in enumerate(elem_list):
         b = e.bbox
@@ -66,6 +68,7 @@ def get_label_id(x, y, elem_list):
     print_with_color("从坐标映射id失败！\n", "red")
     return -1
 
+# 把adb监控到的操作翻译给大模型需要的格式
 def autotrans(adb_event_path, elem_list, rw, rh):
     x_list = []
     y_list = []
@@ -199,6 +202,7 @@ def detect_file_encoding(file_path):
 class AndroidController:
     def __init__(self, device):
         self.device = device
+        # 为了获取动态页面的xml布局文件
         self.d = u2.connect_usb(device)
         self.screenshot_dir = configs["ANDROID_SCREENSHOT_DIR"]
         self.xml_dir = configs["ANDROID_XML_DIR"]

@@ -63,9 +63,10 @@ python run.py
 │   ├── step_recorder.py [核心代码]记录学习阶段的每一步动作前后的UI界面
 │   ├── task_executor.py [核心代码]负责组织实际模拟阶段的流程和所需函数
 │   └── utils.py  工具函数
+├── tasks 存储每次实验的交互记录（如截图、Agent决策理由等）
 ├── config.yaml  配置文件
-├── learn.py 学习阶段入口文件：先进入step_recorder记录用户演示行为,再进入document_generation生成说明书
+├── learn.py 学习阶段入口文件：先进入step_recorder.py记录用户演示行为,再进入document_generation.py生成说明书
 ├── persona1.json 人设文件
-├── replay.py 重现指定task目录的交互记录
-└── run.py 实际模拟阶段入口文件：进入task_executor
+├── replay.py 重现tasks下指定时间的交互记录
+└── run.py 实际模拟阶段入口文件：进入task_executor.py
 ```

@@ -15,6 +15,7 @@ def keyboard_on_press(key, event_handler):
         event_handler.end = 1
         return 0
 
+# 参照watchdog包使用方法
 class EventRecord_Handler(FileSystemEventHandler):
 
     def __init__(self, fname) -> None:
