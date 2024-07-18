@@ -17,7 +17,8 @@
 2. 获取安卓设备并启用 USB 调试，可在 "设置 "的 "开发人员选项 "中找到。
 3. 使用 USB 电缆将设备连接到电脑。
 4. (可选）如果您没有安卓设备, 我们建议您下载 [Android Studio](https://developer.android.google.cn/studio?hl=zh-cn) 并使用其自带的模拟器。安装教程参考[这里](https://zhuanlan.zhihu.com/p/683526450)。您可以从互联网上下载 APK 文件并将其拖到模拟器上，从而在模拟器上安装应用程序。本项目可以检测模拟设备并在其上操作应用程序，就像操作真实设备一样。
-5. 克隆此 repo 并安装依赖项。本项目中的所有脚本都是用 python-3.11.9 编写的，因此请确保已安装。
+5. 在windows上配置[grep](tools\grep-2.5.4-setup.exe)工具，详细教程参考[这里](https://blog.csdn.net/qq_29752857/article/details/140169107)
+6. 克隆此 repo 并安装依赖项。本项目中的所有脚本都是用 python-3.11.9 编写的，因此请确保已安装。
 ```bash
 cd AppAgent_ShortVideo
 pip install -r requirements.txt

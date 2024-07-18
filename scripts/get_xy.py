@@ -46,7 +46,7 @@ task_desc = 'Please follow these steps for each video: "If you like the current 
 app = 'blbl'
 
 root_dir="./"
-app_dir = os.path.join(os.path.join(root_dir, "raw_apps"), app)
+app_dir = os.path.join(os.path.join(root_dir, "apps"), app)
 work_dir = os.path.join(root_dir, "tasks")
 if not os.path.exists(work_dir):
     os.mkdir(work_dir)

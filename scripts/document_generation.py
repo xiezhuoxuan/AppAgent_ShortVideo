@@ -6,7 +6,7 @@ import re
 import sys
 import time
 
-import my_prompts
+import prompts
 from config import load_config
 from model import OpenAIModel, QwenModel
 from utils import print_with_color

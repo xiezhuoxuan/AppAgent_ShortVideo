@@ -1,1 +1,0 @@
-{"tap": "This UI element is a like button that users can tap to indicate they enjoy or approve of the current video. Tapping the button gives positive feedback.", "text": "", "v_swipe": "", "h_swipe": "", "long_press": ""}

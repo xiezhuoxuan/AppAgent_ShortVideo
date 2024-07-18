@@ -8,7 +8,7 @@ import sys
 import time
 import requests
 
-import prompts, my_prompts
+import prompts
 from config import load_config
 from and_controller import list_all_devices, AndroidController, traverse_tree
 from model import parse_explore_rsp, parse_grid_rsp, my_parse_explore_rsp, my_parse_grid_rsp, OpenAIModel, QwenModel
@@ -54,7 +54,7 @@ if not app:
     app = input()
     app = app.replace(" ", "")
 
-app_dir = os.path.join(os.path.join(root_dir, "raw_apps"), app)
+app_dir = os.path.join(os.path.join(root_dir, "apps"), app)
 work_dir = os.path.join(root_dir, "tasks")
 if not os.path.exists(work_dir):
     os.mkdir(work_dir)

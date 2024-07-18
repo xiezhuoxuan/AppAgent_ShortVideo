@@ -11,7 +11,7 @@ arg_desc = "AppAgent - deployment phase"
 parser = argparse.ArgumentParser(formatter_class=argparse.RawDescriptionHelpFormatter, description=arg_desc)
 parser.add_argument("--app")
 parser.add_argument("--root_dir", default="./")
-parser.add_argument("--user_desc")
+parser.add_argument("--user_desc", default="persona1.json")
 
 args = vars(parser.parse_args())
 app = args["app"]

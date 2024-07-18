@@ -204,6 +204,7 @@ while True:
         break
     # time.sleep(0.1)
 
+listener.stop()
 observer.stop()
 print_with_color(f"演示完成，总共记录了 {step-1} 步。", "green")
 
