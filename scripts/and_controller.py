@@ -18,7 +18,8 @@ class AndroidElement:
         self.uid = uid
         self.bbox = bbox
         self.attrib = attrib
-
+# 修改        
+# t：睡眠t时间后再返回  p:错误提示开关
 def execute_adb(adb_command, p=1 ,t=0):
     # print(adb_command)
     result = subprocess.run(adb_command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
@@ -31,6 +32,8 @@ def execute_adb(adb_command, p=1 ,t=0):
         print_with_color(result.stderr, "red")
     return "ERROR"
 
+# 增加
+# 非阻塞执行；t：睡眠t时间后再返回
 def execute_adb_nowait(adb_command, t=0):
     # print(adb_command)
     result = subprocess.Popen(adb_command, shell=True, stdout=subprocess.PIPE)
@@ -38,7 +41,9 @@ def execute_adb_nowait(adb_command, t=0):
         time.sleep(t)
     return result
 
-# 获得像素坐标和event体系坐标的转换倍率
+# 增加
+# 获得屏幕像素坐标和adb的event体系坐标的转换倍率
+# w: 像素宽， h: 像素高
 def get_eventwh_rate(w, h, ewh_size='event_weight_height.txt'):
     # 获取event体系高宽
     adb_command = f'adb shell getevent -p | grep -e "0035" -e "0036" >{ewh_size}'
@@ -59,7 +64,9 @@ def get_eventwh_rate(w, h, ewh_size='event_weight_height.txt'):
     rh = h / eh
     return rw, rh
 
-# 判断给定坐标是哪个元素的
+# 增加
+# 判断给定坐标是屏幕上哪个元素的
+# x,y 坐标；elem_list 元素列表
 def get_label_id(x, y, elem_list):
     for count, e in enumerate(elem_list):
         b = e.bbox
@@ -68,7 +75,8 @@ def get_label_id(x, y, elem_list):
     print_with_color("从坐标映射id失败！\n", "red")
     return -1
 
-# 把adb监控到的操作翻译给大模型需要的格式
+# 增加
+# 把adb监控到的操作翻译成大模型需要的格式（appagent原生格式）
 def autotrans(adb_event_path, elem_list, rw, rh):
     x_list = []
     y_list = []
@@ -88,12 +96,16 @@ def autotrans(adb_event_path, elem_list, rw, rh):
     real_x1 = int(x_list[-1],16) * rw
     real_y1 = int(y_list[-1],16) * rh
     id = get_label_id(real_x, real_y, elem_list)
+    # 只有一个点，那就是点击
     if len(x_list) == 1 and len(y_list) == 1:
         action = 'tap'
+    # 不然就是滑动
     else:
         action = 'swipe'
     return action, id, [real_x,real_y,real_x1,real_y1]
 
+# 增加
+# 开始监控用户行为
 def get_adb_event(f_name="envent_record.txt"):
     adb_command = f'adb shell "nohup getevent -l 2>&1 & echo $!" >{f_name}'
     p = execute_adb_nowait(adb_command, 0.2)
@@ -194,6 +206,8 @@ def traverse_tree(xml_path, elem_list, attrib, add_index=False):
         if event == 'end':
             path.pop()
 
+# 增加
+# 检测文件编码格式
 def detect_file_encoding(file_path):
     with open(file_path, 'rb') as f:
         raw_data = f.read()
@@ -202,6 +216,7 @@ def detect_file_encoding(file_path):
 class AndroidController:
     def __init__(self, device):
         self.device = device
+        # 增加
         # 为了获取动态页面的xml布局文件
         self.d = u2.connect_usb(device)
         self.screenshot_dir = configs["ANDROID_SCREENSHOT_DIR"]
@@ -244,6 +259,7 @@ class AndroidController:
     #         return result
     #     return result
 
+    # 修改
     def get_xml(self, prefix, save_dir):
         xml = self.d.dump_hierarchy()        
         xml_path = os.path.join(save_dir, prefix + '.xml')

@@ -8,3 +8,4 @@ requests
 uiautomator2
 watchdog
 pynput
+chardet

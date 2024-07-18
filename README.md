@@ -12,11 +12,12 @@
 
 ## 项目运行
 ### 1. 基础配置
-1. 在电脑上下载并安装 [Android Debug Bridge](https://developer.android.com/tools/adb)(adb)，这是一个命令行工具，可让您从电脑与 Android 设备通信。
+1. 操作系统名称：Microsoft Windows 11 家庭中文版；  操作系统版本：10.0.22631.3593
+1. 在电脑上安装 [Android Debug Bridge](./tools/platform-tools-latest-windows.zip)(adb)，这是一个命令行工具，可让您从电脑与 Android 设备通信。安装教程参考[这里](https://blog.csdn.net/m0_64776928/article/details/125869652)。
 2. 获取安卓设备并启用 USB 调试，可在 "设置 "的 "开发人员选项 "中找到。
 3. 使用 USB 电缆将设备连接到电脑。
-4. (可选）如果您没有安卓设备, 我们建议您下载 [Android Studio](https://developer.android.com/studio/run/emulator) 并使用其自带的模拟器。模拟器可以在 Android Studio 的设备管理器中找到。您可以从互联网上下载 APK 文件并将其拖到模拟器上，从而在模拟器上安装应用程序。本项目可以检测模拟设备并在其上操作应用程序，就像操作真实设备一样。
-5. 克隆此 repo 并安装依赖项。本项目中的所有脚本都是用 Python 3 编写的，因此请确保已安装。
+4. (可选）如果您没有安卓设备, 我们建议您下载 [Android Studio](https://developer.android.google.cn/studio?hl=zh-cn) 并使用其自带的模拟器。安装教程参考[这里](https://zhuanlan.zhihu.com/p/683526450)。您可以从互联网上下载 APK 文件并将其拖到模拟器上，从而在模拟器上安装应用程序。本项目可以检测模拟设备并在其上操作应用程序，就像操作真实设备一样。
+5. 克隆此 repo 并安装依赖项。本项目中的所有脚本都是用 python-3.11.9 编写的，因此请确保已安装。
 ```bash
 cd AppAgent_ShortVideo
 pip install -r requirements.txt
@@ -25,8 +26,8 @@ pip install -r requirements.txt
 AppAgent_shortvideo 需要由一个多模式模型提供支持，该模型可以接收文本和视觉输入。在实验中，我们使用 'gpt-4-vision-preview' 作为模型，来决定如何采取行动完成智能手机上的任务。
 
 要将请求配置为 GPT-4V，应修改根目录中的 config.yaml。要试用 AppAgent_shortvideo，必须配置两个关键参数：
-1. OpenAI API 密钥：您必须从 OpenAI 购买合格的 API 密钥，才能访问 GPT-4V。
-2. 请求间隔：这是连续 GPT-4V 请求之间的时间间隔（以秒为单位），用于控制向 GPT-4V 请求的频率。请根据账户状态调整该值。
+1. OpenAI API 密钥（OPENAI_API_KEY参数）：您必须从 OpenAI 购买合格的 API 密钥，才能访问 GPT-4V。
+2. 请求间隔（REQUEST_INTERVAL参数）：这是连续 GPT-4V 请求之间的时间间隔（以秒为单位），用于控制向 GPT-4V 请求的频率。请根据账户状态调整该值。
 
 您也可以尝试使用 qwen-vl-max (通义千问-VL) 作为替代多模式模型，为 AppAgent_shortvideo 提供动力。该模型目前可免费使用，但与 GPT-4V 相比，它在 AppAgent_shortvideo 中的性能较差。
 
@@ -35,12 +36,12 @@ AppAgent_shortvideo 需要由一个多模式模型提供支持，该模型可以
 如果要使用自己的模型测试 AppAgent_shortvideo，则应相应地在 scripts/model.py 中编写一个新的模型类。
 
 ### 3. 行为学习阶段
-此解决方案要求用户先演示类似的任务。AppAgent_shortvideo 将从演示中学习，并为演示过程中看到的用户界面元素生成文档。要开始人工演示，应在根目录下运行 learn.py。您需要根据提示进行下一步操作。当您认为演示结束时，请键入'e'来结束演示。
+此解决方案要求用户先演示类似的任务。AppAgent_shortvideo 将从演示中学习，并为演示过程中看到的用户界面元素生成文档。要开始人工演示，首先确保安卓设备已经处于刷短视频的界面上（正在播放短视频），然后在根目录下运行 learn.py。您需要根据提示进行下一步操作。当您认为演示结束时，请键入'e'来结束演示。
 ```bash
 python learn.py
 ```
 ### 4. 实际模拟阶段
-行为学习阶段结束后，可以在根目录下运行 run.py。按照提示输入应用程序名称，选择希望Agent使用的相应文档库，并提供任务描述。然后，Agent就会为您完成任务。
+行为学习阶段结束后，可以在根目录下运行 run.py，首先确保安卓设备已经处于刷短视频的界面上（正在播放短视频）。按照提示输入应用程序名称，选择希望Agent使用的相应文档库，并提供任务描述。然后，Agent就会为您完成任务。
 ```bash
 python run.py
 ```

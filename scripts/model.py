@@ -102,7 +102,9 @@ class QwenModel(BaseModel):
         else:
             return False, response.message
 
-
+# 修改
+# 解析大模型返回值
+# rsp返回值，new_video是否是新视频, phase是哪个阶段（图文理解、喜好判断、操作）, p控制是否打印信息
 def parse_explore_rsp(rsp, new_video, phase, p=1):
     try:
         if phase == 'understand':

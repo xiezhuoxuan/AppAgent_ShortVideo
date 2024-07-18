@@ -6,7 +6,7 @@ import re
 import sys
 import time
 
-import prompts
+import my_prompts
 from config import load_config
 from model import OpenAIModel, QwenModel
 from utils import print_with_color
@@ -134,10 +134,12 @@ with open(record_path, "r") as infile:
         time.sleep(configs["REQUEST_INTERVAL"])
 
 print_with_color(f"Documentation generation phase completed. {doc_count} docs generated.", "yellow")
+
+# 增加
 # 获取目录下所有txt文件的文件名
 txt_files = [f for f in os.listdir(docs_dir) if f.endswith('.txt')]
 # print(txt_files)
-# 打印文件名
+# 打印文件内容
 for file in txt_files:
     # print(file)
     sms_path = os.path.join(docs_dir, file)

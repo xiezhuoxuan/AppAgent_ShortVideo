@@ -1,3 +1,9 @@
+# @file my_prompts.py
+# @brief 存放项目所需的所有prompts
+# @author Zhuoxuan Xie
+# @email 1206852606@qq.com
+# @date 2024-06-15
+
 tap_doc_template = """I will give you the screenshot of a mobile app before and after tapping the UI element labeled 
 with the number <ui_element> on the screen. The numeric tag of each element is located at the center of the element. 
 Tapping this UI element is a necessary part of proceeding with a larger task, which is to <task_desc>. Your task is to 

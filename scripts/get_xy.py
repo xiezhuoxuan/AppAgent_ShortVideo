@@ -142,6 +142,7 @@ draw_bbox_multi(screenshot_path, os.path.join(task_dir, f"{dir_name}_getxy_label
                         dark_mode=configs["DARK_MODE"])
 image = os.path.join(task_dir, f"{dir_name}_getxy_labeled.png")
 
+# 执行点赞操作
 prompt_action = prompts.task_template_action
 prompt_action = re.sub(r"<ui_document>", ui_doc, prompt_action)
 prompt_action = re.sub(r"<task_description>", task_desc, prompt_action)
@@ -153,11 +154,13 @@ act_name = res[0]
 if act_name == "tap":
     _, area = res
     tl, br = elem_list[area - 1].bbox
+    # 获取点击控件的中心坐标
     xt, yt = (tl[0] + br[0]) // 2, (tl[1] + br[1]) // 2
     ret = controller.tap(xt, yt)
     with open("tap_swipe_coordinate.txt", 'w') as f:
         f.write(f"{xt}\t{yt}\n")
 
+# 执行上滑操作
 prompt_action = prompts.task_template_action
 prompt_action = re.sub(r"<ui_document>", ui_doc, prompt_action)
 prompt_action = re.sub(r"<task_description>", task_desc, prompt_action)
@@ -169,6 +172,7 @@ act_name = res[0]
 if act_name == "swipe":
     _, area, swipe_dir, dist = res
     tl, br = elem_list[area - 1].bbox
+    # 获取滑动控件的中心坐标
     xs, ys = (tl[0] + br[0]) // 2, (tl[1] + br[1]) // 2
     ret = controller.swipe(xs, ys, swipe_dir, dist)
     with open("tap_swipe_coordinate.txt", 'a') as f:
